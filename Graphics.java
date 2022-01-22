@@ -164,7 +164,6 @@ public class Graphics extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==UNO_CARD){
-            JLabel newCard = new JLabel(RandomCard());
             newCard.setVisible(true);
             newCard.setBounds(300,200, 67, 111);
             MainGamePanel.add(newCard, Integer.valueOf(2));
