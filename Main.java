@@ -13,7 +13,7 @@ public class Main {
             "B0","B1(1)","B1(2)","B2(1)","B2(2)","B3(1)","B3(2)","B4(1)","B4(2)","B5(1)","B5(2)","B6(1)","B6(2)","B7(1)","B7(2)","B8(1)","B8(2)","B9(1)","B9(2)","BD2(1)","BD2(2)","BS(1)","BS(2)","BR(1)","BR(2)",
             "Y0","Y1(1)","Y1(2)","Y2(1)","Y2(2)","Y3(1)","Y3(2)","Y4(1)","Y4(2)","Y5(1)","Y5(2)","Y6(1)","Y6(2)","Y7(1)","Y7(2)","Y8(1)","Y8(2)","Y9(1)","Y9(2)","YD2(1)","YD2(2)","YS(1)","YS(2)","YR(1)","YR(2)",
             "G0","G1(1)","G1(2)","G2(1)","G2(2)","G3(1)","G3(2)","G4(1)","G4(2)","G5(1)","G5(2)","G6(1)","G6(2)","G7(1)","G7(2)","G8(1)","G8(2)","G9(1)","G9(2)","GD2(1)","GD2(2)","GS(1)","GS(2)","GR(1)","GR(2)",
-            "W(1)","W(2)","W(3)","W(4)","WP4(1)","WP4(2)","WP4(3)","Wp4(4)"};
+            "W(1)","W(2)","W(3)","W(4)","WP4(1)","WP4(2)","WP4(3)","WP4(4)"};
     static String[] Colors = {
         "Red","Blue","Yellow","Green"
     };
@@ -32,6 +32,9 @@ public class Main {
 
     static String FirstCard = "";
     static int Draw;
+    static int DeckLength;
+    static int PlayerHandLength;
+    static int BotHandLength;
 
     public static void main(String[] args){
         for (int i = 0; i < Cards1Length; i++) {
@@ -41,9 +44,9 @@ public class Main {
             ColorCards.add(Colors[i]);
         }
     
-        int PlayerHandLength = PlayerHand.toArray().length;
-        int BotHandLength = BotHand.toArray().length;
-        int DeckLength = Deck.toArray().length;
+        PlayerHandLength = PlayerHand.toArray().length;
+        BotHandLength = BotHand.toArray().length;
+        DeckLength = Deck.toArray().length;
         String Action;
         String DrawnCard;
     
@@ -77,17 +80,15 @@ public class Main {
 
     public static void PlayerPlay(){
  
-        int PlayerHandLength = PlayerHand.toArray().length;
-        int BotHandLength = BotHand.toArray().length;
-        int DeckLength = Deck.toArray().length;
+        PlayerHandLength = PlayerHand.toArray().length;
+        BotHandLength = BotHand.toArray().length;
+        DeckLength = Deck.toArray().length;
         int Draw;
         String Action;
+    
 
         System.out.println("Your Hand is " + PlayerHand);
         System.out.println("The card is " + ANSI_YELLOW + FirstCard + ANSI_RESET);
-        
-
-////////
         for (int i = 0; i < 100; i++) {
             System.out.println("You Can: \n Draw a Card \n Play a Card \n Examine Cards");
             Action = S.nextLine();
@@ -120,54 +121,79 @@ public class Main {
                 System.out.println("Which card do you want to play: 1-" + PlayerHandLength);
                 
                 PlayChoice = S.nextInt();
-                PlayChoice2 = PlayChoice--;
-                String NotWild = "W";
+                PlayChoice--;
+                
 
                 if (PlayChoice <= PlayerHandLength){
-                    if(PlayerHand.get(PlayChoice2).charAt(0) == FirstCard.charAt(0) || PlayerHand.get(PlayChoice2).charAt(1) == FirstCard.charAt(1) && PlayerHand.get(PlayChoice2).charAt(0) != 'W'){
+                    if(PlayerHand.get(PlayChoice).charAt(0) == FirstCard.charAt(0) || PlayerHand.get(PlayChoice).charAt(1) == FirstCard.charAt(1) && PlayerHand.get(PlayChoice).charAt(0) != 'W'){
                         //we need to change this so its 1-7 not 0-6
-                        FirstCard = PlayerHand.get(PlayChoice2);
+                        FirstCard = PlayerHand.get(PlayChoice);
 
-                        System.out.println("You have played a " + PlayerHand.get(PlayChoice2));
-                        PlayerHand.remove(PlayChoice2);
+                        System.out.println("You have played a " + PlayerHand.get(PlayChoice));
                         PlayerHandLength = PlayerHand.toArray().length;
+                        //checks for skip reverse and draw2 2 --------------------------------------------------------------
+                        if(PlayerHand.get(PlayChoice).contains("S") || PlayerHand.get(PlayChoice).charAt(1) == 'R'){
+                            System.out.println("you get to play again");
+                            PlayerHand.remove(PlayerHand.get(PlayChoice));
+                            PlayerPlay();
+                        }
+                        else if(PlayerHand.get(PlayChoice).contains("D")){
+                            System.out.println("the bot draws two and you get to play again");
+                            String DrawnCard;
+                            PlayerHand.remove(PlayerHand.get(PlayChoice));
+                            
+                            for(int ForLoop = 0; ForLoop < 2; ForLoop++){
+                                DeckLength = Deck.toArray().length;
+                                Draw = DrawCard.nextInt(DeckLength);
+                                DrawnCard = Deck.get(Draw);
+                                BotHand.add(DrawnCard);
+                                Deck.remove(DrawnCard);
+                                System.out.println("Card Drawn");
+                                
+                            }
+                            PlayerPlay();
+                        }
+                        PlayerHand.remove(PlayerHand.get(PlayChoice));
+
+                        // to right here -----------------------------------------------------------------------------
                         if(CheckWin(PlayerHand, 1) == true){
                             System.out.println("you win");
                             System.exit(0);
                         }
-                        //checks for skip reverse and draw2 2 --------------------------------------------------------------
-                        if(PlayerHand.get(i).contains("S") || PlayerHand.get(i).contains("R")){
-                            System.out.println("you get to play again");
-                            PlayerPlay();
+                        BotPlay(BotHand, Deck);
+                    }
+                    else if(PlayerHand.get(PlayChoice).contains("W")){
+                        //play that card as a wild or +4
+                        FirstCard = PlayerHand.get(PlayChoice);
+                        System.out.println("You have played a " + PlayerHand.get(PlayChoice));
+                        String DrawnCard;
+                        PlayerHandLength = PlayerHand.toArray().length;
+                        System.out.println("What color do you want");
+                        ColorChoice = S.next();
+                        if (ColorChoice.equalsIgnoreCase("red") || ColorChoice.equalsIgnoreCase("Blue") || ColorChoice.equalsIgnoreCase("Green") || ColorChoice.equalsIgnoreCase("Yellow")) {
+                            FirstCard = ColorChoice.toUpperCase();
                         }
-                        if(PlayerHand.get(i).contains("D")){
-                            System.out.println("the bot draws two and you get to play again");
-                            for(int is = 0; is < 2; i++){
+
+                        System.out.println("Wild");
+                        System.out.println(FirstCard);
+
+                        if (PlayerHand.get(PlayChoice).contains("WP4")){
+                            System.out.println("the bot draws four and you play again");
+                            PlayerHand.remove(PlayerHand.get(PlayChoice));
+                            for(int ForLoop = 0; ForLoop < 2; ForLoop++){
                                 DeckLength = Deck.toArray().length;
                                 Draw = DrawCard.nextInt(DeckLength);
-                                String DrawnCard;
                                 DrawnCard = Deck.get(Draw);
                                 BotHand.add(DrawnCard);
                                 Deck.remove(DrawnCard);
                             }
-                        // to right here -----------------------------------------------------------------------------
-                        PlayerPlay();
+                            PlayerPlay();     
                         }
-                    BotPlay(BotHand, Deck);
-                    }
-                    else if(PlayerHand.get(PlayChoice2).contains("W")){
-                        //play that card as a wild or +4
-                        FirstCard = PlayerHand.get(PlayChoice2);
-                        System.out.println("You have played a " + PlayerHand.get(PlayChoice2));
-                        PlayerHand.remove(PlayChoice2);
-                        PlayerHandLength = PlayerHand.toArray().length;
-                        System.out.println("What color do you want");
-                        ColorChoice = S.next();
-                        if (ColorChoice.equalsIgnoreCase("red") || ColorChoice.equalsIgnoreCase("Blue") || ColorChoice.equalsIgnoreCase("Green") || ColorChoice.equalsIgnoreCase("Y")) {
-                            FirstCard = ColorChoice.toUpperCase();
+                        else {
+                            PlayerHand.remove(PlayerHand.get(PlayChoice));
                         }
-                        System.out.println("Wild");
-                        System.out.println(FirstCard);
+                        
+                
                         if(CheckWin(PlayerHand, 1) == true){
                             System.out.println("you win");
                             System.exit(0);
@@ -200,41 +226,57 @@ public class Main {
                 //Play that card by color
                 System.out.println("Bot played: " + BotHand.get(i));
                 FirstCard = BotHand.get(i);
-                BotHand.remove(BotHand.get(i));
                 System.out.println("Normal");
-                if(CheckWin(BotHand, 2) == true){
-                    System.out.println("bot wins");
-                    System.exit(0);
-                }
                 //checks for skip  reverse and draw 2------------------------------------------------------------
-                if(BotHand.get(i).contains("S") || BotHand.get(i).contains("R")){
+                if(BotHand.get(i).contains("S") || BotHand.get(i).charAt(1) == 'R'){
                     System.out.println("bot gets to play again");
+                    BotHand.remove(BotHand.get(i));
                     BotPlay(BotHand, Deck);
                 }
-                if(BotHand.get(i).contains("S") || BotHand.get(i).contains("R")){
+                else if(BotHand.get(i).contains("D")){
                     System.out.println("you draw two and bot gets to play again");
-                    for(int is = 0; is < 2; i++){
-                        int DeckLength = Deck.toArray().length;
+                    String DrawnCard;
+                    BotHand.remove(BotHand.get(i));
+                    for(int ForLoop = 0; ForLoop < 2; ForLoop++){
+                        DeckLength = Deck.toArray().length;
                         Draw = DrawCard.nextInt(DeckLength);
-                        String DrawnCard;
                         DrawnCard = Deck.get(Draw);
                         PlayerHand.add(DrawnCard);
                         Deck.remove(DrawnCard);
                     }
-                //to here -----------------------------------------------------------------------------------------
                     BotPlay(BotHand, Deck);
+                }
+                BotHand.remove(BotHand.get(i));
+                if(CheckWin(BotHand, 2) == true){
+                    System.out.println("bot wins");
+                    System.exit(0);
                 }
                 NextPlayer();
             }
             else if(BotHand.get(i).contains("W")){
                 //play that card as a wild or +4
                 System.out.println("Bot played: " + BotHand.get(i));
-                BotHand.remove(BotHand.get(i));
                 Draw = DrawCard.nextInt(4);
                 BotWildColor = Draw--;
                 FirstCard = ColorCards.get(BotWildColor);
                 System.out.println("Wild");
                 System.out.println(FirstCard);
+                String DrawnCard;
+                if (BotHand.get(i).contains("WP4")){
+                    System.out.println("you draws four and the bot plays again");
+                    BotHand.remove(BotHand.get(i));
+                    for(int ForLoop = 0; ForLoop < 4; ForLoop++){
+                        DeckLength = Deck.toArray().length;
+                        Draw = DrawCard.nextInt(DeckLength);
+                        DrawnCard = Deck.get(Draw);
+                        PlayerHand.add(DrawnCard);
+                        Deck.remove(DrawnCard);
+                    }
+                    BotPlay(BotHand, Deck);     
+                }
+                else {
+                    BotHand.remove(BotHand.get(i));
+                }
                 if(CheckWin(BotHand, 2) == true){
                     System.out.println("bot wins");
                     System.exit(0);
@@ -243,11 +285,11 @@ public class Main {
                 
             }
         }
-        int DeckLength = Deck.toArray().length;
+        DeckLength = Deck.toArray().length;
         System.out.println(DeckLength);
         
         Random DrawCard = new Random();
-        int BotHandLength = BotHand.toArray().length;
+        BotHandLength = BotHand.toArray().length;
 
         Draw = DrawCard.nextInt(DeckLength);
         String DrawnCard = Deck.get(Draw);
@@ -286,7 +328,6 @@ public class Main {
     }
 }
 
-//fix the 0-6 to 1-7 thing
-//add logic to if you have a +2 as well then you can play it
-//keep testing 
-
+//deck problems
+//if bot plays 2 and qwe have a 2 we have the ability to play that 2
+//change the wild
