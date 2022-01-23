@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Graphics extends JFrame implements ActionListener{
+public class UnoGraphics extends JFrame implements ActionListener{
    
     static JLayeredPane MainGamePanel = new JLayeredPane();
 
