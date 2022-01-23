@@ -31,6 +31,7 @@ public class UnoGraphics extends JFrame implements ActionListener{
     };
 
     static ArrayList<String> PlayerHand = new ArrayList<>();
+    static ArrayList<Integer> PlayerHandIndex = new ArrayList<>();
     static ArrayList<String> BotHand = new ArrayList<>();
     static ArrayList<String> ColorCards = new ArrayList<>();
 
@@ -38,28 +39,35 @@ public class UnoGraphics extends JFrame implements ActionListener{
 
     static Scanner S = new Scanner(System.in);
 
+    static String FirstCard = "";
     static int Draw;
-    static int DeckLength;
-    static int PlayerHandLength;
-    static int BotHandLength;
+    static int PlayerHandLength = PlayerHand.toArray().length;
 
-        static JButton[] ListOfCards = CreateCards.Create();
-        static ImageIcon[] ListOfCardsIcons = CreateCardIcons.Create();
+    static JButton[] ListOfCards = CreateCards.Create();
+    static ImageIcon[] ListOfCardsIcons = CreateCardIcons.Create();
 
-        static int ListOfCardsLength = ListOfCards.length;
-
+    static int ListOfCardsLength = ListOfCards.length;
 
     static JLabel BACKGROUND_PANEL = new JLabel();
     static JLabel UNO_LOGO_PANEL = new JLabel();
 
-    JButton EXIT_BTN = new JButton("EXIT");
-    JButton UNO_CARD = new JButton();
-    JButton FirstCard = new JButton();
+    static  JButton EXIT_BTN = new JButton("EXIT");
+    static JButton UNO_CARD = new JButton();
+    static JButton First = new JButton();
 
 
     static final int GAME_WIDTH=910;
     static final int GAME_HEIGHT= 525;
-    static final Dimension SCREEN_SIZE =  new Dimension(GAME_WIDTH, GAME_HEIGHT);
+    static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEIGHT);
+
+    static int BotHandLength = BotHand.toArray().length;
+    static int DeckLength;
+
+    static int index;
+
+    static String DrawnCard = "";
+
+    static int ValueOf = 2;
 
     public void Graphics(){
         this.setPreferredSize(SCREEN_SIZE);
@@ -69,7 +77,6 @@ public class UnoGraphics extends JFrame implements ActionListener{
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-
 
         BACKGROUND_PANEL.setOpaque(true);
         BACKGROUND_PANEL.setSize(SCREEN_SIZE);
@@ -313,76 +320,126 @@ public class UnoGraphics extends JFrame implements ActionListener{
         ListOfCards[53].setSize(67, 111);
         ListOfCards[53].setVisible(false);
 
-            MainGamePanel.add(BACKGROUND_PANEL,Integer.valueOf(0));
-            MainGamePanel.add(UNO_CARD,Integer.valueOf(1));
-            MainGamePanel.add(EXIT_BTN,Integer.valueOf(1));
-            MainGamePanel.add(UNO_LOGO_PANEL,Integer.valueOf(1));
-            MainGamePanel.add(ListOfCards[0], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[1], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[2], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[3], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[4], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[5], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[6], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[7], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[8], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[9], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[10], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[11], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[12], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[13], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[14], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[15], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[16], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[17], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[18], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[19], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[20], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[21], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[22], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[23], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[24], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[25], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[26], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[27], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[28], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[29], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[30], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[31], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[32], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[33], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[34], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[35], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[36], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[37], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[38], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[39], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[40], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[41], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[42], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[43], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[44], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[45], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[46], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[47], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[48], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[49], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[50], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[51], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[52], Integer.valueOf(2));
-            MainGamePanel.add(ListOfCards[53], Integer.valueOf(2));
-            this.add(MainGamePanel);
+        
+
+        MainGamePanel.add(ListOfCards[0], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[1], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[2], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[3], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[4], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[5], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[6], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[7], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[8], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[9], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[10], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[11], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[12], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[13], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[14], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[15], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[16], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[17], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[18], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[19], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[20], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[21], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[22], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[23], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[24], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[25], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[26], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[27], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[28], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[29], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[30], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[31], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[32], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[33], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[34], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[35], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[36], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[37], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[38], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[39], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[40], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[41], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[42], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[43], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[44], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[45], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[46], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[47], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[48], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[49], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[50], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[51], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[52], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[53], Integer.valueOf(ValueOf));
+        MainGamePanel.add(BACKGROUND_PANEL,Integer.valueOf(0));
+        MainGamePanel.add(UNO_CARD,Integer.valueOf(1));
+        MainGamePanel.add(EXIT_BTN,Integer.valueOf(1));
+        MainGamePanel.add(UNO_LOGO_PANEL,Integer.valueOf(1));
+        this.add(MainGamePanel);
 
             while(true){
+
+                for (int i = 0; i < Cards1Length; i++) {
+                    Deck.add(Cards1[i]);
+                }
+                for (int i = 0; i < 4; i++) {
+                   ColorCards.add(Colors[i]);
+                }
+            
+                //now its just implementation 
+                //good job me
+                PlayerHandLength = PlayerHand.toArray().length;
+                BotHandLength = BotHand.toArray().length;
+                DeckLength = Deck.toArray().length;
+                String Action;
+                int x = 150;
+                int y = 350;
+                index = 1;
                 
-                    FirstCard = CreateCard();
-                    FirstCard.setVisible(true);
-                    FirstCard.setBounds(215,200, 67, 111);
-                    break;
-                    //now its just implementation 
-                    //good job me
+                for (int i = 0; i < 7; i++) {
+                    Draw = DrawCard.nextInt(DeckLength);
+                    DrawnCard = Deck.get(Draw);
+                    PlayerHand.add(DrawnCard);
+                    PlayerHandIndex.add(index);
+                    CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
+                    CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
+                    CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+                    Deck.remove(DrawnCard);
+                    DeckLength = Deck.toArray().length;
+                    PlayerHandLength = PlayerHand.toArray().length;
+                    x = x + 50;
+                    index++;
+                }
+                for (int i = 0; i < 7; i++) {
+                    Draw = DrawCard.nextInt(DeckLength);
+                    DrawnCard = Deck.get(Draw);
+                    BotHand.add(DrawnCard);
+                    Deck.remove(DrawnCard);
+                    DeckLength = Deck.toArray().length;
+                    PlayerHandLength = PlayerHand.toArray().length;
+                }
+                
+                PlayerPlay();
+                break;
+ 
             }
 
+    }
+
+    public static void PlayerPlay(){
+        System.out.println("Your Hand is " + PlayerHand);
+        System.out.println("The Computer's hand is " + BotHand);
+        Draw = DrawCard.nextInt(DeckLength);
+        FirstCard = Deck.get(Draw);
+        CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setVisible(true);
+        CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setBounds(215, 200, 67, 111);
+        CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setEnabled(false);
+        Deck.remove(FirstCard);
     }
 
     @Override
@@ -391,6 +448,27 @@ public class UnoGraphics extends JFrame implements ActionListener{
         if(e.getSource() == EXIT_BTN){
             System.exit(0);
         } 
+
+        for (int i = 0; i < PlayerHandLength; i++) {
+
+            if(e.getSource() == CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i)){
+                First = CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i);
+                
+                FirstCard = PlayerHand.get(i);
+
+                //add logic
+
+                
+                First.setBounds(215, 200, 67, 111);
+                First.setEnabled(false); 
+                System.out.println(FirstCard);
+                PlayerHand.remove(FirstCard);
+                ValueOf++;
+                MainGamePanel.add(First, Integer.valueOf(ValueOf));
+
+
+            }
+        }
     }
 
     public static JButton CreateCard(){
@@ -401,5 +479,15 @@ public class UnoGraphics extends JFrame implements ActionListener{
         return ListOfCards[RandCard];
     }
 
+
 }
 
+//add draw card
+//fix errors
+//add requirments for playing cards
+//fix errors
+//add bot and not being able to play cards during their turn
+//fix errors
+//add bots actual things
+//fix errors
+//
