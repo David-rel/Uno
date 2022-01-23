@@ -3,11 +3,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-
 import java.awt.*;
-
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Graphics extends JFrame implements ActionListener{
    
@@ -17,80 +17,40 @@ public class Graphics extends JFrame implements ActionListener{
     ImageIcon Uno = new ImageIcon("pics/Uno.png");
     ImageIcon UnoLogo = new ImageIcon("pics/UnoLogo.png");
 
+    static Random DrawCard = new Random();
+
+    static ArrayList<String> Deck = new ArrayList<>();
     static String[] Cards1 = {
-        "R0","R1(1)","R1(2)","R2(1)","R2(2)","R3(1)","R3(2)","R4(1)","R4(2)","R5(1)","R5(2)","R6(1)","R6(2)","R7(1)","R7(2)","R8(1)","R8(2)","R9(1)","R9(2)","RD2(1)","RD2(2)","RS(1)","RS(2)","RR(1)","RR(2)",
-        "B0","B1(1)","B1(2)","B2(1)","B2(2)","B3(1)","B3(2)","B4(1)","B4(2)","B5(1)","B5(2)","B6(1)","B6(2)","B7(1)","B7(2)","B8(1)","B8(2)","B9(1)","B9(2)","BD2(1)","BD2(2)","BS(1)","BS(2)","BR(1)","BR(2)",
-        "Y0","Y1(1)","Y1(2)","Y2(1)","Y2(2)","Y3(1)","Y3(2)","Y4(1)","Y4(2)","Y5(1)","Y5(2)","Y6(1)","Y6(2)","Y7(1)","Y7(2)","Y8(1)","Y8(2)","Y9(1)","Y9(2)","YD2(1)","YD2(2)","YS(1)","YS(2)","YR(1)","YR(2)",
-        "G0","G1(1)","G1(2)","G2(1)","G2(2)","G3(1)","G3(2)","G4(1)","G4(2)","G5(1)","G5(2)","G6(1)","G6(2)","G7(1)","G7(2)","G8(1)","G8(2)","G9(1)","G9(2)","GD2(1)","GD2(2)","GS(1)","GS(2)","GR(1)","GR(2)",
-        "W(1)","W(2)","W(3)","W(4)","WP4(1)","WP4(2)","WP4(3)","Wp4(4)"};
+            "R0","R1(1)","R1(2)","R2(1)","R2(2)","R3(1)","R3(2)","R4(1)","R4(2)","R5(1)","R5(2)","R6(1)","R6(2)","R7(1)","R7(2)","R8(1)","R8(2)","R9(1)","R9(2)","RD2(1)","RD2(2)","RS(1)","RS(2)","RR(1)","RR(2)",
+            "B0","B1(1)","B1(2)","B2(1)","B2(2)","B3(1)","B3(2)","B4(1)","B4(2)","B5(1)","B5(2)","B6(1)","B6(2)","B7(1)","B7(2)","B8(1)","B8(2)","B9(1)","B9(2)","BD2(1)","BD2(2)","BS(1)","BS(2)","BR(1)","BR(2)",
+            "Y0","Y1(1)","Y1(2)","Y2(1)","Y2(2)","Y3(1)","Y3(2)","Y4(1)","Y4(2)","Y5(1)","Y5(2)","Y6(1)","Y6(2)","Y7(1)","Y7(2)","Y8(1)","Y8(2)","Y9(1)","Y9(2)","YD2(1)","YD2(2)","YS(1)","YS(2)","YR(1)","YR(2)",
+            "G0","G1(1)","G1(2)","G2(1)","G2(2)","G3(1)","G3(2)","G4(1)","G4(2)","G5(1)","G5(2)","G6(1)","G6(2)","G7(1)","G7(2)","G8(1)","G8(2)","G9(1)","G9(2)","GD2(1)","GD2(2)","GS(1)","GS(2)","GR(1)","GR(2)",
+            "W(1)","W(2)","W(3)","W(4)","WP4(1)","WP4(2)","WP4(3)","WP4(4)"};
+    static String[] Colors = {
+        "Red","Blue","Yellow","Green"
+    };
 
-        static int Cards1Length = Cards1.length;
+    static ArrayList<String> PlayerHand = new ArrayList<>();
+    static ArrayList<String> BotHand = new ArrayList<>();
+    static ArrayList<String> ColorCards = new ArrayList<>();
 
+    static int Cards1Length = Cards1.length;
 
-    static ImageIcon GREEN_0 = new ImageIcon("pics/Green0.png");
-    static ImageIcon GREEN_1 = new ImageIcon("pics/Green1.png");
-    static    ImageIcon GREEN_2 = new ImageIcon("pics/Green2.png");
-    static    ImageIcon GREEN_3 = new ImageIcon("pics/Green3.png");
-    static    ImageIcon GREEN_4 = new ImageIcon("pics/Green4.png");
-    static    ImageIcon GREEN_5 = new ImageIcon("pics/Green5.png");
-    static ImageIcon GREEN_6 = new ImageIcon("pics/Green6.png");
-    static ImageIcon GREEN_7= new ImageIcon("pics/Green7.png");
-    static ImageIcon GREEN_8 = new ImageIcon("pics/Green8.png");
-    static ImageIcon GREEN_9 = new ImageIcon("pics/Green9.png");
-    static ImageIcon GREEN_SKIP = new ImageIcon("pics/GreenSkip.png");
-    static ImageIcon GREEN_REVERSE = new ImageIcon("pics/GreenReverse.png");
-        static ImageIcon GREEN_DRAW_2 = new ImageIcon("pics/GreenPlusTwo.png");
+    static Scanner S = new Scanner(System.in);
 
-        static ImageIcon RED_0 = new ImageIcon("pics/Red0.png");
-        static ImageIcon RED_1 = new ImageIcon("pics/Red1.png");
-        static    ImageIcon RED_2 = new ImageIcon("pics/Red2.png");
-        static    ImageIcon RED_3 = new ImageIcon("pics/Red3.png");
-        static    ImageIcon RED_4 = new ImageIcon("pics/Red4.png");
-        static    ImageIcon RED_5 = new ImageIcon("pics/Red5.png");
-        static ImageIcon RED_6 = new ImageIcon("pics/Red6.png");
-        static ImageIcon RED_7= new ImageIcon("pics/Red7.png");
-        static ImageIcon RED_8 = new ImageIcon("pics/Red8.png");
-        static ImageIcon RED_9 = new ImageIcon("pics/Red9.png");
-        static ImageIcon RED_SKIP = new ImageIcon("pics/RedSkip.png");
-        static ImageIcon RED_REVERSE = new ImageIcon("pics/RedReverse.png");
-            static ImageIcon RED_DRAW_2 = new ImageIcon("pics/RedPlusTwo.png");
+    static int Draw;
+    static int DeckLength;
+    static int PlayerHandLength;
+    static int BotHandLength;
+
+        static JButton[] ListOfCards = CreateCards.Create();
+        static ImageIcon[] ListOfCardsIcons = CreateCardIcons.Create();
+
+        static int ListOfCardsLength = ListOfCards.length;
 
 
-            static ImageIcon BLUE_0 = new ImageIcon("pics/Blue0.png");
-            static ImageIcon BLUE_1 = new ImageIcon("pics/Blue1.png");
-            static    ImageIcon BLUE_2 = new ImageIcon("pics/Blue2.png");
-            static    ImageIcon BLUE_3 = new ImageIcon("pics/Blue3.png");
-            static    ImageIcon BLUE_4 = new ImageIcon("pics/Blue4.png");
-            static    ImageIcon BLUE_5 = new ImageIcon("pics/Blue5.png");
-            static ImageIcon BLUE_6 = new ImageIcon("pics/Blue6.png");
-            static ImageIcon BLUE_7= new ImageIcon("pics/Blue7.png");
-            static ImageIcon BLUE_8 = new ImageIcon("pics/Blue8.png");
-            static ImageIcon BLUE_9 = new ImageIcon("pics/Blue9.png");
-            static ImageIcon BLUE_SKIP = new ImageIcon("pics/BlueSkip.png");
-            static ImageIcon BLUE_REVERSE = new ImageIcon("pics/BlueReverse.png");
-                static ImageIcon BLUE_DRAW_2 = new ImageIcon("pics/BluePlusTwo.png");
-
-                static ImageIcon YELLOW_0 = new ImageIcon("pics/Yellow0.png");
-                static ImageIcon YELLOW_1 = new ImageIcon("pics/Yellow1.png");
-                static    ImageIcon YELLOW_2 = new ImageIcon("pics/Yellow2.png");
-                static    ImageIcon YELLOW_3 = new ImageIcon("pics/Yellow3.png");
-                static    ImageIcon YELLOW_4 = new ImageIcon("pics/Yellow4.png");
-                static    ImageIcon YELLOW_5 = new ImageIcon("pics/Yellow5.png");
-                static ImageIcon YELLOW_6 = new ImageIcon("pics/Yellow6.png");
-                static ImageIcon YELLOW_7= new ImageIcon("pics/Yellow7.png");
-                static ImageIcon YELLOW_8 = new ImageIcon("pics/Yellow8.png");
-                static ImageIcon YELLOW_9 = new ImageIcon("pics/Yellow9.png");
-                static ImageIcon YELLOW_SKIP = new ImageIcon("pics/YellowSkip.png");
-                static ImageIcon YELLOW_REVERSE = new ImageIcon("pics/YellowReverse.png");
-                    static ImageIcon YELLOW_DRAW_2 = new ImageIcon("pics/YellowPlusTwo.png");
-
-
-        static    ImageIcon WILD_PLUS_4 = new ImageIcon("pics/PlusFour.png");
-        static    ImageIcon WILD = new ImageIcon("pics/Wild.png");
-
-
-    JLabel BACKGROUND_PANEL = new JLabel();
-    JLabel UNO_LOGO_PANEL = new JLabel();
+    static JLabel BACKGROUND_PANEL = new JLabel();
+    static JLabel UNO_LOGO_PANEL = new JLabel();
 
     JButton EXIT_BTN = new JButton("EXIT");
     JButton UNO_CARD = new JButton();
@@ -121,6 +81,7 @@ public class Graphics extends JFrame implements ActionListener{
         UNO_CARD.setSize(64,99);
         UNO_CARD.setIcon(Uno);
         UNO_CARD.setLocation(650,200);
+        UNO_CARD.addActionListener(this);
         
         UNO_LOGO_PANEL.setOpaque(true);
         UNO_LOGO_PANEL.setSize(292,175);
@@ -136,22 +97,290 @@ public class Graphics extends JFrame implements ActionListener{
         EXIT_BTN.setForeground(Color.WHITE);
         EXIT_BTN.addActionListener(this);
 
+        ListOfCards[0].setIcon(ListOfCardsIcons[0]);
+        ListOfCards[0].setSize(67, 111);
+        ListOfCards[0].setVisible(false);
+
+        ListOfCards[1].setIcon(ListOfCardsIcons[1]);
+        ListOfCards[1].setSize(67, 111);
+        ListOfCards[1].setVisible(false);
+
+        ListOfCards[2].setIcon(ListOfCardsIcons[2]);
+        ListOfCards[2].setSize(67, 111);
+        ListOfCards[2].setVisible(false);
+
+        ListOfCards[3].setIcon(ListOfCardsIcons[3]);
+        ListOfCards[3].setSize(67, 111);
+        ListOfCards[3].setVisible(false);
+
+        ListOfCards[4].setIcon(ListOfCardsIcons[4]);
+        ListOfCards[4].setSize(67, 111);
+        ListOfCards[4].setVisible(false);
+
+        ListOfCards[5].setIcon(ListOfCardsIcons[5]);
+        ListOfCards[5].setSize(67, 111);
+        ListOfCards[5].setVisible(false);
+
+        ListOfCards[6].setIcon(ListOfCardsIcons[6]);
+        ListOfCards[6].setSize(67, 111);
+        ListOfCards[6].setVisible(false);
+
+        ListOfCards[7].setIcon(ListOfCardsIcons[7]);
+        ListOfCards[7].setSize(67, 111);
+        ListOfCards[7].setVisible(false);
+
+        ListOfCards[8].setIcon(ListOfCardsIcons[8]);
+        ListOfCards[8].setSize(67, 111);
+        ListOfCards[8].setVisible(false);
+
+        ListOfCards[9].setIcon(ListOfCardsIcons[9]);
+        ListOfCards[9].setSize(67, 111);
+        ListOfCards[9].setVisible(false);
+
+        ListOfCards[10].setIcon(ListOfCardsIcons[10]);
+        ListOfCards[10].setSize(67, 111);
+        ListOfCards[10].setVisible(false);
+
+        ListOfCards[11].setIcon(ListOfCardsIcons[11]);
+        ListOfCards[11].setSize(67, 111);
+        ListOfCards[11].setVisible(false);
+
+        ListOfCards[12].setIcon(ListOfCardsIcons[12]);
+        ListOfCards[12].setSize(67, 111);
+        ListOfCards[12].setVisible(false);
+
+        ListOfCards[13].setIcon(ListOfCardsIcons[13]);
+        ListOfCards[13].setSize(67, 111);
+        ListOfCards[13].setVisible(false);
+
+        ListOfCards[14].setIcon(ListOfCardsIcons[14]);
+        ListOfCards[14].setSize(67, 111);
+        ListOfCards[14].setVisible(false);
+
+        ListOfCards[15].setIcon(ListOfCardsIcons[15]);
+        ListOfCards[15].setSize(67, 111);
+        ListOfCards[15].setVisible(false);
+
+        ListOfCards[16].setIcon(ListOfCardsIcons[16]);
+        ListOfCards[16].setSize(67, 111);
+        ListOfCards[16].setVisible(false);
+
+        ListOfCards[17].setIcon(ListOfCardsIcons[17]);
+        ListOfCards[17].setSize(67, 111);
+        ListOfCards[17].setVisible(false);
+
+        ListOfCards[18].setIcon(ListOfCardsIcons[18]);
+        ListOfCards[18].setSize(67, 111);
+        ListOfCards[18].setVisible(false);
+
+        ListOfCards[19].setIcon(ListOfCardsIcons[19]);
+        ListOfCards[19].setSize(67, 111);
+        ListOfCards[19].setVisible(false);
+
+        ListOfCards[20].setIcon(ListOfCardsIcons[20]);
+        ListOfCards[20].setSize(67, 111);
+        ListOfCards[20].setVisible(false);
+
+        ListOfCards[21].setIcon(ListOfCardsIcons[21]);
+        ListOfCards[21].setSize(67, 111);
+        ListOfCards[21].setVisible(false);
+
+        ListOfCards[22].setIcon(ListOfCardsIcons[22]);
+        ListOfCards[22].setSize(67, 111);
+        ListOfCards[22].setVisible(false);
+
+        ListOfCards[23].setIcon(ListOfCardsIcons[23]);
+        ListOfCards[23].setSize(67, 111);
+        ListOfCards[23].setVisible(false);
+
+        ListOfCards[24].setIcon(ListOfCardsIcons[24]);
+        ListOfCards[24].setSize(67, 111);
+        ListOfCards[24].setVisible(false);
+
+        ListOfCards[25].setIcon(ListOfCardsIcons[25]);
+        ListOfCards[25].setSize(67, 111);
+        ListOfCards[25].setVisible(false);
+
+        ListOfCards[26].setIcon(ListOfCardsIcons[26]);
+        ListOfCards[26].setSize(67, 111);
+        ListOfCards[26].setVisible(false);
+
+        ListOfCards[27].setIcon(ListOfCardsIcons[27]);
+        ListOfCards[27].setSize(67, 111);
+        ListOfCards[27].setVisible(false);
+
+        ListOfCards[28].setIcon(ListOfCardsIcons[28]);
+        ListOfCards[28].setSize(67, 111);
+        ListOfCards[28].setVisible(false);
+
+        ListOfCards[29].setIcon(ListOfCardsIcons[29]);
+        ListOfCards[29].setSize(67, 111);
+        ListOfCards[29].setVisible(false);
+
+        ListOfCards[30].setIcon(ListOfCardsIcons[30]);
+        ListOfCards[30].setSize(67, 111);
+        ListOfCards[30].setVisible(false);
+
+        ListOfCards[31].setIcon(ListOfCardsIcons[31]);
+        ListOfCards[31].setSize(67, 111);
+        ListOfCards[31].setVisible(false);
+
+        ListOfCards[32].setIcon(ListOfCardsIcons[32]);
+        ListOfCards[32].setSize(67, 111);
+        ListOfCards[32].setVisible(false);
+
+        ListOfCards[33].setIcon(ListOfCardsIcons[33]);
+        ListOfCards[33].setSize(67, 111);
+        ListOfCards[33].setVisible(false);
+
+        ListOfCards[34].setIcon(ListOfCardsIcons[34]);
+        ListOfCards[34].setSize(67, 111);
+        ListOfCards[34].setVisible(false);
+
+        ListOfCards[35].setIcon(ListOfCardsIcons[35]);
+        ListOfCards[35].setSize(67, 111);
+        ListOfCards[35].setVisible(false);
+
+        ListOfCards[36].setIcon(ListOfCardsIcons[36]);
+        ListOfCards[36].setSize(67, 111);
+        ListOfCards[36].setVisible(false);
+
+        ListOfCards[37].setIcon(ListOfCardsIcons[37]);
+        ListOfCards[37].setSize(67, 111);
+        ListOfCards[37].setVisible(false);
+
+        ListOfCards[38].setIcon(ListOfCardsIcons[38]);
+        ListOfCards[38].setSize(67, 111);
+        ListOfCards[38].setVisible(false);
+
+        ListOfCards[39].setIcon(ListOfCardsIcons[39]);
+        ListOfCards[39].setSize(67, 111);
+        ListOfCards[39].setVisible(false);
+
+        ListOfCards[40].setIcon(ListOfCardsIcons[40]);
+        ListOfCards[40].setSize(67, 111);
+        ListOfCards[40].setVisible(false);
+
+        ListOfCards[41].setIcon(ListOfCardsIcons[41]);
+        ListOfCards[41].setSize(67, 111);
+        ListOfCards[41].setVisible(false);
+
+        ListOfCards[42].setIcon(ListOfCardsIcons[42]);
+        ListOfCards[42].setSize(67, 111);
+        ListOfCards[42].setVisible(false);
+
+        ListOfCards[43].setIcon(ListOfCardsIcons[43]);
+        ListOfCards[43].setSize(67, 111);
+        ListOfCards[43].setVisible(false);
+
+        ListOfCards[44].setIcon(ListOfCardsIcons[44]);
+        ListOfCards[44].setSize(67, 111);
+        ListOfCards[44].setVisible(false);
+
+        ListOfCards[45].setIcon(ListOfCardsIcons[45]);
+        ListOfCards[45].setSize(67, 111);
+        ListOfCards[45].setVisible(false);
+
+        ListOfCards[46].setIcon(ListOfCardsIcons[46]);
+        ListOfCards[46].setSize(67, 111);
+        ListOfCards[46].setVisible(false);
+
+        ListOfCards[47].setIcon(ListOfCardsIcons[47]);
+        ListOfCards[47].setSize(67, 111);
+        ListOfCards[47].setVisible(false);
+
+        ListOfCards[48].setIcon(ListOfCardsIcons[48]);
+        ListOfCards[48].setSize(67, 111);
+        ListOfCards[48].setVisible(false);
+
+        ListOfCards[49].setIcon(ListOfCardsIcons[49]);
+        ListOfCards[49].setSize(67, 111);
+        ListOfCards[49].setVisible(false);
+
+        ListOfCards[50].setIcon(ListOfCardsIcons[50]);
+        ListOfCards[50].setSize(67, 111);
+        ListOfCards[50].setVisible(false);
+
+        ListOfCards[51].setIcon(ListOfCardsIcons[51]);
+        ListOfCards[51].setSize(67, 111);
+        ListOfCards[51].setVisible(false);
+
+        ListOfCards[52].setIcon(ListOfCardsIcons[52]);
+        ListOfCards[52].setSize(67, 111);
+        ListOfCards[52].setVisible(false);
+
+        ListOfCards[53].setIcon(ListOfCardsIcons[53]);
+        ListOfCards[53].setSize(67, 111);
+        ListOfCards[53].setVisible(false);
 
             MainGamePanel.add(BACKGROUND_PANEL,Integer.valueOf(0));
             MainGamePanel.add(UNO_CARD,Integer.valueOf(1));
             MainGamePanel.add(EXIT_BTN,Integer.valueOf(1));
             MainGamePanel.add(UNO_LOGO_PANEL,Integer.valueOf(1));
+            MainGamePanel.add(ListOfCards[0], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[1], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[2], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[3], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[4], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[5], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[6], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[7], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[8], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[9], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[10], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[11], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[12], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[13], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[14], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[15], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[16], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[17], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[18], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[19], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[20], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[21], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[22], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[23], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[24], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[25], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[26], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[27], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[28], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[29], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[30], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[31], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[32], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[33], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[34], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[35], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[36], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[37], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[38], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[39], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[40], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[41], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[42], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[43], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[44], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[45], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[46], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[47], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[48], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[49], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[50], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[51], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[52], Integer.valueOf(2));
+            MainGamePanel.add(ListOfCards[53], Integer.valueOf(2));
             this.add(MainGamePanel);
 
             while(true){
-                FirstCard.setVisible(true);
-                FirstCard.setBounds(215,200, 67, 111);
-                FirstCard.setIcon(RandomCard());
-                MainGamePanel.add(FirstCard, Integer.valueOf(2));
-                System.out.println(Cards1Length);
-                MainGamePanel.add(FirstCard, Integer.valueOf(2));
-                UNO_CARD.addActionListener(this);
-                break;
+                
+                    FirstCard = CreateCard();
+                    FirstCard.setVisible(true);
+                    FirstCard.setBounds(215,200, 67, 111);
+                    break;
+                    //now its just implementation 
+                    //good job me
             }
 
     }
@@ -161,129 +390,15 @@ public class Graphics extends JFrame implements ActionListener{
 
         if(e.getSource() == EXIT_BTN){
             System.exit(0);
-        }
-
-        if(e.getSource()==UNO_CARD){
-            newCard.setVisible(true);
-            newCard.setBounds(300,200, 67, 111);
-            MainGamePanel.add(newCard, Integer.valueOf(2));
-        }
+        } 
     }
 
-    public static ImageIcon RandomCard(int FirstCard){
-        switch(FirstCard){
-            case 0:
-                return RED_1;
-            case 1:
-                return RED_2;
-            case 2:
-                return RED_3;
-            case 3:
-                return RED_4;
-            case 4:
-                return RED_5;
-            case 5:
-                return RED_6;
-            case 6:
-                return RED_7;
-            case 7:
-                return RED_8;
-            case 8:
-                return RED_9;
-            case 9:
-                return RED_SKIP;
-            case 10:
-                return RED_REVERSE;
-            case 11:
-                return RED_DRAW_2;
-            case 12:
-                return RED_0;
-            case 13:
-                return RED_0;
-            case 14:
-                return BLUE_0;
-            case 15:
-                return BLUE_1;
-            case 16:
-                return BLUE_2;                
-            case 17:
-                return BLUE_3;
-            case 18:
-                return BLUE_4;
-            case 19:
-                return BLUE_5;
-            case 20:
-                return BLUE_6;
-            case 21:
-                return BLUE_7;
-            case 22:
-                return BLUE_8;
-            case 23:
-                return BLUE_9;
-            case 24:
-                return BLUE_SKIP;
-            case 25:
-                return BLUE_REVERSE;
-            case 26:
-                return BLUE_DRAW_2;
-            case 27:
-                return GREEN_0;
-            case 28:
-                return GREEN_1;
-            case 29:
-                return GREEN_2;
-            case 30:
-                return GREEN_3;
-            case 31:
-                return GREEN_4;
-            case 32:
-                return GREEN_5;
-            case 33:
-                return GREEN_6;
-            case 34:
-                return GREEN_7;
-            case 35:
-                return GREEN_8;
-            case 36:
-                return GREEN_9;
-            case 37:
-                return GREEN_SKIP;
-            case 38:
-                return GREEN_REVERSE;
-            case 39:
-                return GREEN_DRAW_2;
-            case 40:
-                return YELLOW_DRAW_2;
-            case 41:
-                return YELLOW_3;
-            case 42:
-                return YELLOW_4;
-            case 43:
-                return YELLOW_5;
-            case 44:
-                return YELLOW_6;
-            case 45:
-                return YELLOW_7;
-            case 46:
-                return YELLOW_8;
-            case 47:
-                return YELLOW_9;
-            case 48:
-                return YELLOW_SKIP;
-            case 49:
-                return YELLOW_REVERSE;
-             case 50:
-                return YELLOW_2;
-            case 51:
-                return YELLOW_0;
-            case 52:
-                return YELLOW_1;
-            case 53:
-                return WILD_PLUS_4;
-            case 54:
-                return WILD;
-        }
-        return RED_0;
+    public static JButton CreateCard(){
+
+        Random r = new Random();
+        int RandCard = r.nextInt(ListOfCardsLength);
+
+        return ListOfCards[RandCard];
     }
 
 }
