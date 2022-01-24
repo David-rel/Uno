@@ -55,6 +55,15 @@ public class UnoGraphics extends JFrame implements ActionListener{
     static JButton UNO_CARD = new JButton();
     static JButton First = new JButton();
 
+    // static ImageIcon red_wild = new ImageIcon("pics/RedWild.png");
+    // static ImageIcon blue_wild = new ImageIcon("pics/BlueWild.png");
+    // static ImageIcon yellow_wild = new ImageIcon("pics/YellowWild.png");
+    // static ImageIcon green_wild = new ImageIcon("pics/GreenWild.png");
+
+    // static JButton RED_WILD = new JButton();
+    // static JButton BLUE_WILD = new JButton();
+    // static JButton GREEN_WILD = new JButton();
+    // static JButton YELLOW_WILD = new JButton();
 
     static final int GAME_WIDTH=910;
     static final int GAME_HEIGHT= 525;
@@ -68,6 +77,10 @@ public class UnoGraphics extends JFrame implements ActionListener{
     static String DrawnCard = "";
 
     static int ValueOf = 2;
+    static String ColorChoice;
+
+    static int x = 50;
+    static int y = 350;
 
     public void Graphics(){
         this.setPreferredSize(SCREEN_SIZE);
@@ -320,7 +333,222 @@ public class UnoGraphics extends JFrame implements ActionListener{
         ListOfCards[53].setSize(67, 111);
         ListOfCards[53].setVisible(false);
 
+        ListOfCards[54].setIcon(ListOfCardsIcons[54]);
+        ListOfCards[54].setSize(67, 111);
+        ListOfCards[54].setVisible(false);
+
+        ListOfCards[55].setIcon(ListOfCardsIcons[55]);
+        ListOfCards[55].setSize(67, 111);
+        ListOfCards[55].setVisible(false);
+
+        ListOfCards[56].setIcon(ListOfCardsIcons[56]);
+        ListOfCards[56].setSize(67, 111);
+        ListOfCards[56].setVisible(false);   
+   
+        ListOfCards[57].setIcon(ListOfCardsIcons[57]);
+        ListOfCards[57].setSize(67, 111);
+        ListOfCards[57].setVisible(false);      
         
+        ListOfCards[58].setIcon(ListOfCardsIcons[58]);
+        ListOfCards[58].setSize(67, 111);
+        ListOfCards[58].setVisible(false);      
+        
+        ListOfCards[59].setIcon(ListOfCardsIcons[59]);
+        ListOfCards[59].setSize(67, 111);
+        ListOfCards[59].setVisible(false);      
+        
+        ListOfCards[60].setIcon(ListOfCardsIcons[60]);
+        ListOfCards[60].setSize(67, 111);
+        ListOfCards[60].setVisible(false);      
+        
+        ListOfCards[61].setIcon(ListOfCardsIcons[61]);
+        ListOfCards[61].setSize(67, 111);
+        ListOfCards[61].setVisible(false);      
+        
+        ListOfCards[62].setIcon(ListOfCardsIcons[62]);
+        ListOfCards[62].setSize(67, 111);
+        ListOfCards[62].setVisible(false);      
+        
+        ListOfCards[63].setIcon(ListOfCardsIcons[63]);
+        ListOfCards[63].setSize(67, 111);
+        ListOfCards[63].setVisible(false);      
+        
+        ListOfCards[64].setIcon(ListOfCardsIcons[64]);
+        ListOfCards[64].setSize(67, 111);
+        ListOfCards[64].setVisible(false);      
+        
+        ListOfCards[65].setIcon(ListOfCardsIcons[65]);
+        ListOfCards[65].setSize(67, 111);
+        ListOfCards[65].setVisible(false);      
+        
+        ListOfCards[66].setIcon(ListOfCardsIcons[66]);
+        ListOfCards[66].setSize(67, 111);
+        ListOfCards[66].setVisible(false);      
+        
+        ListOfCards[67].setIcon(ListOfCardsIcons[67]);
+        ListOfCards[67].setSize(67, 111);
+        ListOfCards[67].setVisible(false);      
+        
+        ListOfCards[68].setIcon(ListOfCardsIcons[68]);
+        ListOfCards[68].setSize(67, 111);
+        ListOfCards[68].setVisible(false);      
+        
+        ListOfCards[69].setIcon(ListOfCardsIcons[69]);
+        ListOfCards[69].setSize(67, 111);
+        ListOfCards[69].setVisible(false);      
+        
+        ListOfCards[70].setIcon(ListOfCardsIcons[70]);
+        ListOfCards[70].setSize(67, 111);
+        ListOfCards[70].setVisible(false);      
+        
+        ListOfCards[71].setIcon(ListOfCardsIcons[71]);
+        ListOfCards[71].setSize(67, 111);
+        ListOfCards[71].setVisible(false);      
+        
+        ListOfCards[72].setIcon(ListOfCardsIcons[72]);
+        ListOfCards[72].setSize(67, 111);
+        ListOfCards[72].setVisible(false);      
+        
+        ListOfCards[73].setIcon(ListOfCardsIcons[73]);
+        ListOfCards[73].setSize(67, 111);
+        ListOfCards[73].setVisible(false);      
+        
+        ListOfCards[74].setIcon(ListOfCardsIcons[74]);
+        ListOfCards[74].setSize(67, 111);
+        ListOfCards[74].setVisible(false);      
+        
+        ListOfCards[75].setIcon(ListOfCardsIcons[75]);
+        ListOfCards[75].setSize(67, 111);
+        ListOfCards[75].setVisible(false);      
+        
+        ListOfCards[76].setIcon(ListOfCardsIcons[76]);
+        ListOfCards[76].setSize(67, 111);
+        ListOfCards[76].setVisible(false);      
+        
+        ListOfCards[77].setIcon(ListOfCardsIcons[77]);
+        ListOfCards[77].setSize(67, 111);
+        ListOfCards[77].setVisible(false);      
+        
+        ListOfCards[78].setIcon(ListOfCardsIcons[78]);
+        ListOfCards[78].setSize(67, 111);
+        ListOfCards[78].setVisible(false);      
+        
+        ListOfCards[79].setIcon(ListOfCardsIcons[79]);
+        ListOfCards[79].setSize(67, 111);
+        ListOfCards[79].setVisible(false);      
+        
+        ListOfCards[80].setIcon(ListOfCardsIcons[80]);
+        ListOfCards[80].setSize(67, 111);
+        ListOfCards[80].setVisible(false);      
+        
+        ListOfCards[81].setIcon(ListOfCardsIcons[81]);
+        ListOfCards[81].setSize(67, 111);
+        ListOfCards[81].setVisible(false);      
+        
+        ListOfCards[82].setIcon(ListOfCardsIcons[82]);
+        ListOfCards[82].setSize(67, 111);
+        ListOfCards[82].setVisible(false);      
+        
+        ListOfCards[83].setIcon(ListOfCardsIcons[83]);
+        ListOfCards[83].setSize(67, 111);
+        ListOfCards[83].setVisible(false);      
+        
+        ListOfCards[84].setIcon(ListOfCardsIcons[84]);
+        ListOfCards[84].setSize(67, 111);
+        ListOfCards[84].setVisible(false);      
+        
+        ListOfCards[85].setIcon(ListOfCardsIcons[85]);
+        ListOfCards[85].setSize(67, 111);
+        ListOfCards[85].setVisible(false);      
+        
+        ListOfCards[86].setIcon(ListOfCardsIcons[86]);
+        ListOfCards[86].setSize(67, 111);
+        ListOfCards[86].setVisible(false);      
+        
+        ListOfCards[87].setIcon(ListOfCardsIcons[87]);
+        ListOfCards[87].setSize(67, 111);
+        ListOfCards[87].setVisible(false);      
+        
+        ListOfCards[88].setIcon(ListOfCardsIcons[88]);
+        ListOfCards[88].setSize(67, 111);
+        ListOfCards[88].setVisible(false);      
+        
+        ListOfCards[89].setIcon(ListOfCardsIcons[89]);
+        ListOfCards[89].setSize(67, 111);
+        ListOfCards[89].setVisible(false);      
+        
+        ListOfCards[90].setIcon(ListOfCardsIcons[90]);
+        ListOfCards[90].setSize(67, 111);
+        ListOfCards[90].setVisible(false);      
+        
+        ListOfCards[91].setIcon(ListOfCardsIcons[91]);
+        ListOfCards[91].setSize(67, 111);
+        ListOfCards[91].setVisible(false);      
+        
+        ListOfCards[92].setIcon(ListOfCardsIcons[92]);
+        ListOfCards[92].setSize(67, 111);
+        ListOfCards[92].setVisible(false);      
+        
+        ListOfCards[93].setIcon(ListOfCardsIcons[93]);
+        ListOfCards[93].setSize(67, 111);
+        ListOfCards[93].setVisible(false);      
+        
+        ListOfCards[94].setIcon(ListOfCardsIcons[94]);
+        ListOfCards[94].setSize(67, 111);
+        ListOfCards[94].setVisible(false);      
+        
+        ListOfCards[95].setIcon(ListOfCardsIcons[95]);
+        ListOfCards[95].setSize(67, 111);
+        ListOfCards[95].setVisible(false);      
+        
+        ListOfCards[96].setIcon(ListOfCardsIcons[96]);
+        ListOfCards[96].setSize(67, 111);
+        ListOfCards[96].setVisible(false);      
+        
+        ListOfCards[97].setIcon(ListOfCardsIcons[97]);
+        ListOfCards[97].setSize(67, 111);
+        ListOfCards[97].setVisible(false);      
+        
+        ListOfCards[98].setIcon(ListOfCardsIcons[98]);
+        ListOfCards[98].setSize(67, 111);
+        ListOfCards[98].setVisible(false);      
+        
+        ListOfCards[99].setIcon(ListOfCardsIcons[99]);
+        ListOfCards[99].setSize(67, 111);
+        ListOfCards[99].setVisible(false);      
+        
+        ListOfCards[100].setIcon(ListOfCardsIcons[100]);
+        ListOfCards[100].setSize(67, 111);
+        ListOfCards[100].setVisible(false);      
+        
+        ListOfCards[101].setIcon(ListOfCardsIcons[101]);
+        ListOfCards[101].setSize(67, 111);
+        ListOfCards[101].setVisible(false);      
+        
+        ListOfCards[102].setIcon(ListOfCardsIcons[102]);
+        ListOfCards[102].setSize(67, 111);
+        ListOfCards[102].setVisible(false);      
+        
+        ListOfCards[103].setIcon(ListOfCardsIcons[103]);
+        ListOfCards[103].setSize(67, 111);
+        ListOfCards[103].setVisible(false);      
+        
+        ListOfCards[104].setIcon(ListOfCardsIcons[104]);
+        ListOfCards[104].setSize(67, 111);
+        ListOfCards[104].setVisible(false);      
+        
+        ListOfCards[105].setIcon(ListOfCardsIcons[105]);
+        ListOfCards[105].setSize(67, 111);
+        ListOfCards[105].setVisible(false);      
+        
+        ListOfCards[106].setIcon(ListOfCardsIcons[106]);
+        ListOfCards[106].setSize(67, 111);
+        ListOfCards[106].setVisible(false);      
+        
+        ListOfCards[107].setIcon(ListOfCardsIcons[107]);
+        ListOfCards[107].setSize(67, 111);
+        ListOfCards[107].setVisible(false);      
+
 
         MainGamePanel.add(ListOfCards[0], Integer.valueOf(ValueOf));
         MainGamePanel.add(ListOfCards[1], Integer.valueOf(ValueOf));
@@ -376,6 +604,60 @@ public class UnoGraphics extends JFrame implements ActionListener{
         MainGamePanel.add(ListOfCards[51], Integer.valueOf(ValueOf));
         MainGamePanel.add(ListOfCards[52], Integer.valueOf(ValueOf));
         MainGamePanel.add(ListOfCards[53], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[54], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[55], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[56], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[57], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[58], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[59], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[60], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[61], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[62], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[63], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[64], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[65], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[66], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[67], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[68], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[69], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[70], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[71], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[72], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[73], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[74], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[75], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[76], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[77], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[78], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[79], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[80], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[81], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[82], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[83], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[84], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[85], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[86], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[87], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[88], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[89], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[90], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[91], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[92], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[93], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[94], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[95], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[96], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[97], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[98], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[99], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[100], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[101], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[102], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[103], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[104], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[105], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[106], Integer.valueOf(ValueOf));
+        MainGamePanel.add(ListOfCards[107], Integer.valueOf(ValueOf));
         MainGamePanel.add(BACKGROUND_PANEL,Integer.valueOf(0));
         MainGamePanel.add(UNO_CARD,Integer.valueOf(1));
         MainGamePanel.add(EXIT_BTN,Integer.valueOf(1));
@@ -397,11 +679,10 @@ public class UnoGraphics extends JFrame implements ActionListener{
                 BotHandLength = BotHand.toArray().length;
                 DeckLength = Deck.toArray().length;
                 String Action;
-                int x = 150;
-                int y = 350;
                 index = 1;
                 
                 for (int i = 0; i < 7; i++) {
+                    System.out.println(ListOfCards);
                     Draw = DrawCard.nextInt(DeckLength);
                     DrawnCard = Deck.get(Draw);
                     PlayerHand.add(DrawnCard);
@@ -414,6 +695,8 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     PlayerHandLength = PlayerHand.toArray().length;
                     x = x + 50;
                     index++;
+                    
+                    
                 }
                 for (int i = 0; i < 7; i++) {
                     Draw = DrawCard.nextInt(DeckLength);
@@ -423,8 +706,16 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     DeckLength = Deck.toArray().length;
                     PlayerHandLength = PlayerHand.toArray().length;
                 }
+
+                System.out.println("Your Hand is " + PlayerHand);
+                System.out.println("The Computer's hand is " + BotHand);
+                Draw = DrawCard.nextInt(DeckLength);
+                FirstCard = Deck.get(Draw);
+                CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setVisible(true);
+                CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setBounds(215, 200, 67, 111);
+                // CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setEnabled(false);
+                Deck.remove(FirstCard);
                 
-                PlayerPlay();
                 break;
  
             }
@@ -432,62 +723,256 @@ public class UnoGraphics extends JFrame implements ActionListener{
     }
 
     public static void PlayerPlay(){
-        System.out.println("Your Hand is " + PlayerHand);
-        System.out.println("The Computer's hand is " + BotHand);
-        Draw = DrawCard.nextInt(DeckLength);
-        FirstCard = Deck.get(Draw);
-        CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setVisible(true);
-        CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setBounds(215, 200, 67, 111);
-        CheckCard.Check(FirstCard, ListOfCards, Deck, PlayerHandIndex).setEnabled(false);
-        Deck.remove(FirstCard);
+        System.out.println("test");
+       for (int i = 0; i < ListOfCardsLength; i++) {
+           ListOfCards[i].setEnabled(true);
+        }
+        UNO_CARD.setEnabled(true);
     }
+
+
+    public void BotPlays(){
+        System.out.println("test");
+        for (int i = 0; i < ListOfCardsLength; i++) {
+            ListOfCards[i].setEnabled(false);
+        }
+        UNO_CARD.setEnabled(false);
+
+        int BotWildColor;
+        int Draw;
+
+        for(int i = 0; i < BotHand.toArray().length; i++){ 
+
+            if(BotHand.get(i).charAt(0) != 'W' && BotHand.get(i).charAt(0) == FirstCard.charAt(0) || BotHand.get(i).charAt(1) == FirstCard.charAt(1)){
+                //Play that card by color
+                System.out.println(BotHand);
+                System.out.println("Bot played: " + BotHand.get(i));
+
+                FirstCard = BotHand.get(i);
+                First = BotCheck.Check(ListOfCards, BotHandLength, BotHand, i);
+                First.setBounds(215, 200, 67, 111);
+                First.setVisible(true);
+                
+                System.out.println(FirstCard);
+
+                ValueOf++;
+                MainGamePanel.add(First, Integer.valueOf(ValueOf));
+
+                //checks for skip  reverse and draw 2------------------------------------------------------------
+                if(BotHand.get(i).contains("S") || BotHand.get(i).charAt(1) == 'R'){
+                    System.out.println("bot gets to play again");
+                    BotHand.remove(BotHand.get(i));
+                    if(BotHand.toArray().length == 0){
+                        WinOrLose W = new WinOrLose("you lose");
+                    }
+                    BotPlays();
+                }
+                else if(BotHand.get(i).contains("D")){
+                    System.out.println("you draw two and bot gets to play again");
+                    String DrawnCard;
+                    BotHand.remove(BotHand.get(i));
+                    for(int ForLoop = 0; ForLoop < 2; ForLoop++){
+                        DeckLength = Deck.toArray().length;
+                        Draw = DrawCard.nextInt(DeckLength);
+                        DrawnCard = Deck.get(Draw);
+                        PlayerHand.add(DrawnCard);
+                        CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
+                        CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
+                        CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+                        Deck.remove(DrawnCard);
+                        DeckLength = Deck.toArray().length;
+                        PlayerHandLength = PlayerHand.toArray().length;
+                        x = x + 50;
+                    }
+                    if(BotHand.toArray().length == 0){
+                        WinOrLose W = new WinOrLose("you lose");
+                    }
+                    BotPlays();
+                }
+                BotHand.remove(BotHand.get(i));
+                if(BotHand.toArray().length == 0){
+                    WinOrLose W = new WinOrLose("you lose");
+                }
+                PlayerPlay();
+            }
+                
+        }
+    
+        DeckLength = Deck.toArray().length;
+        System.out.println(DeckLength);
+        
+        Random DrawCard = new Random();
+        BotHandLength = BotHand.toArray().length;
+
+        Draw = DrawCard.nextInt(DeckLength);
+        String DrawnCard = Deck.get(Draw);
+        BotHand.add(DrawnCard);
+        Deck.remove(DrawnCard);
+        DeckLength = Deck.toArray().length;
+        BotHandLength = BotHand.toArray().length;
+
+        System.out.println("bot did not have the card");
+        System.out.println("The bot drew a " + DrawnCard);
+        System.out.println(BotHand);
+        PlayerPlay();
+    }
+
+
+        
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == EXIT_BTN){
+        if (e.getSource() == EXIT_BTN){
             System.exit(0);
         } 
 
+        if (e.getSource() == First){
+            
+        }
+
+        if (e.getSource() == UNO_CARD){
+            DeckLength = Deck.toArray().length;
+            Draw = DrawCard.nextInt(DeckLength);
+            DrawnCard = Deck.get(Draw);
+            PlayerHand.add(DrawnCard);
+            CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
+            CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
+            // if( DrawsCard.Draws(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).getX() > 700){
+            //     x = 150;
+            //     y = 425;
+            //     CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
+            // }
+            CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+            Deck.remove(DrawnCard);
+            DeckLength = Deck.toArray().length;
+            PlayerHandLength = PlayerHand.toArray().length;
+            x = x + 50;
+            BotPlays();
+        }
+
         for (int i = 0; i < PlayerHandLength; i++) {
 
-            if(e.getSource() == CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i)){
-                First = CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i);
+            if (e.getSource() == CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i)){
                 
-                FirstCard = PlayerHand.get(i);
+                if(PlayerHand.get(i).charAt(0) == FirstCard.charAt(0) || PlayerHand.get(i).charAt(1) == FirstCard.charAt(1)){
 
-                //add logic
+                    First = CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i);
+                    First = CardClicked.Check(ListOfCards, PlayerHand, PlayerHandLength, PlayerHandIndex, i);   
+                    FirstCard = PlayerHand.get(i);
+                    First.setBounds(215, 200, 67, 111);
+                    System.out.println(FirstCard);
 
-                
-                First.setBounds(215, 200, 67, 111);
-                First.setEnabled(false); 
-                System.out.println(FirstCard);
-                PlayerHand.remove(FirstCard);
-                ValueOf++;
-                MainGamePanel.add(First, Integer.valueOf(ValueOf));
+                    ValueOf++;
+                    MainGamePanel.add(First, Integer.valueOf(ValueOf));
+
+                    System.out.println("You have played a " + PlayerHand.get(i));
+
+                    PlayerHandLength = PlayerHand.toArray().length;
+
+                    //checks for skip reverse and draw2 2 --------------------------------------------------------------
+                    if(PlayerHand.get(i).contains("S") || PlayerHand.get(i).charAt(1) == 'R'){
+                        System.out.println("you get to play again");
+                        PlayerHand.remove(FirstCard);
+                        if(PlayerHand.toArray().length == 0){
+                            WinOrLose W = new WinOrLose("you win");
+                        }
+                        PlayerPlay();
+                    }
+                    else if(PlayerHand.get(i).contains("D")){
+                        System.out.println("the bot draws two and you get to play again");
+                        String DrawnCard;
+                        PlayerHand.remove(FirstCard);
+                            
+                        for(int ForLoop = 0; ForLoop < 2; ForLoop++){
+                            DeckLength = Deck.toArray().length;
+                            Draw = DrawCard.nextInt(DeckLength);
+                            DrawnCard = Deck.get(Draw);
+                            BotHand.add(DrawnCard);
+                            Deck.remove(DrawnCard);
+                            System.out.println("Cards Drawn");
+                        }
+                        if(PlayerHand.toArray().length == 0){
+                            WinOrLose W = new WinOrLose("you win");
+                        }
+                        PlayerPlay();
+                    }
+                    if(PlayerHand.toArray().length == 0){
+                        WinOrLose W = new WinOrLose("you win");
+                    }
+                    PlayerHand.remove(FirstCard);
+                    
+                    }
 
 
+
+
+                    else if(PlayerHand.get(i).contains("W")){
+                        //play that card as a wild or +4
+                        FirstCard = PlayerHand.get(i);
+                        System.out.println("You have played a " + PlayerHand.get(i));
+                        if(PlayerHand.toArray().length == 0){
+                            WinOrLose W = new WinOrLose("you win");
+                        }
+                        //check stuff here
+                        String DrawnCard;
+                        PlayerHandLength = PlayerHand.toArray().length;
+                        System.out.println("What color do you want");
+                        ColorChoice = S.next();
+                        if (ColorChoice.equalsIgnoreCase("red") || ColorChoice.equalsIgnoreCase("Blue") || ColorChoice.equalsIgnoreCase("Green") || ColorChoice.equalsIgnoreCase("Yellow")) {
+                            FirstCard = ColorChoice.toUpperCase();
+                        }
+
+                        // if(WildCardChoose() == "Red"){
+                            
+                        // }
+
+                        System.out.println("Wild");
+                        System.out.println(FirstCard);
+
+                        if (PlayerHand.get(i).contains("WP4")){
+                            System.out.println("the bot draws four");
+                            PlayerHand.remove(PlayerHand.get(i));
+                            for(int ForLoop = 0; ForLoop < 2; ForLoop++){
+                                DeckLength = Deck.toArray().length;
+                                Draw = DrawCard.nextInt(DeckLength);
+                                DrawnCard = Deck.get(Draw);
+                                BotHand.add(DrawnCard);
+                                Deck.remove(DrawnCard);
+                            }
+                        BotPlays();
+                        }
+                        else {
+                            PlayerHand.remove(PlayerHand.get(i));
+                        }
+                    }
+                    else {
+                        System.out.println("You Cannot Play that Card");
+                    }
             }
+
         }
     }
 
-    public static JButton CreateCard(){
 
-        Random r = new Random();
-        int RandCard = r.nextInt(ListOfCardsLength);
+    // public static JButton CreateCard(){
 
-        return ListOfCards[RandCard];
-    }
+    //     Random r = new Random();
+    //     int RandCard = r.nextInt(ListOfCardsLength);
+
+    //     return ListOfCards[RandCard];
+    // }
 
 
 }
 
 //add draw card
 //fix errors
-//add requirments for playing cards
+//wilds
+    //text into panel
 //fix errors
-//add bot and not being able to play cards during their turn
-//fix errors
-//add bots actual things
-//fix errors
-//
+//winning panel thingy
+//losing panel thingy
+//cleaning up the drawing of cards

@@ -2,13 +2,15 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-public class CheckCard {
+public class BotCheck {
 
-    public static JButton Check(String FirstCard, JButton[] ListOfCards, ArrayList<String> Deck, ArrayList<Integer> PlayerHandIndex){
+    public static JButton Check(JButton[] ListOfCards, int BotHandLength, ArrayList<String> BotHand , int i){
 
-        if (FirstCard.contains("(1)") || FirstCard.contains("0")) {
-            if (FirstCard.charAt(0) == 'R'){
-                switch(FirstCard.charAt(1)){
+
+
+        if (BotHand.get(i).contains("(1)") || BotHand.get(i).contains("0")) {
+            if (BotHand.get(i).charAt(0) == 'R'){
+                switch(BotHand.get(i).charAt(1)){
                     case '0':
                         return ListOfCards[0]; 
                     case '1':
@@ -38,8 +40,8 @@ public class CheckCard {
                 }
                     
             }
-            else if (FirstCard.charAt(0) == 'B'){
-                switch(FirstCard.charAt(1)) {
+            else if (BotHand.get(i).charAt(0) == 'B'){
+                switch(BotHand.get(i).charAt(1)) {
                     case '0':
                         return ListOfCards[13]; 
                     case '1':
@@ -68,8 +70,8 @@ public class CheckCard {
                         return ListOfCards[25];
                 }
             }
-            else if (FirstCard.charAt(0) == 'G'){
-                switch(FirstCard.charAt(1)){
+            else if (BotHand.get(i).charAt(0) == 'G'){
+                switch(BotHand.get(i).charAt(1)){
                     case '0':
                         return ListOfCards[26]; 
                     case '1':
@@ -98,8 +100,8 @@ public class CheckCard {
                         return ListOfCards[38];
                 }
             }
-            else if (FirstCard.charAt(0) == 'Y'){
-                switch(FirstCard.charAt(1)){
+            else if (BotHand.get(i).charAt(0) == 'Y'){
+                switch(BotHand.get(i).charAt(1)){
                     case '0':
                         return ListOfCards[39]; 
                     case '1':
@@ -128,9 +130,9 @@ public class CheckCard {
                         return ListOfCards[51];
                 }
             }
-            else if (FirstCard.charAt(0) == 'W'){
+            else if (BotHand.get(i).charAt(0) == 'W'){
                 
-                switch(FirstCard.charAt(1)){
+                switch(BotHand.get(i).charAt(1)){
                     case '(':
                         return ListOfCards[52]; 
                     case 'P':
@@ -139,9 +141,9 @@ public class CheckCard {
             }
         }
 
-        else if (FirstCard.contains("(2)")) {
-            if (FirstCard.charAt(0) == 'R'){
-                switch(FirstCard.charAt(1)){
+        else if (BotHand.get(i).contains("(2)")) {
+            if (BotHand.get(i).charAt(0) == 'R'){
+                switch(BotHand.get(i).charAt(1)){
                     case '1':
                         return ListOfCards[54];
                     case '2':
@@ -169,8 +171,8 @@ public class CheckCard {
                 }
                     
             }
-            else if (FirstCard.charAt(0) == 'B'){
-                switch(FirstCard.charAt(1)) { 
+            else if (BotHand.get(i).charAt(0) == 'B'){
+                switch(BotHand.get(i).charAt(1)) { 
                     case '1':
                         return ListOfCards[66];
                     case '2':
@@ -197,8 +199,8 @@ public class CheckCard {
                         return ListOfCards[77];
                 }
             }    
-            else if (FirstCard.charAt(0) == 'G'){
-                switch(FirstCard.charAt(1)){
+            else if (BotHand.get(i).charAt(0) == 'G'){
+                switch(BotHand.get(i).charAt(1)){
                     case '1':
                         return ListOfCards[78];
                     case '2':
@@ -225,8 +227,8 @@ public class CheckCard {
                         return ListOfCards[89];
                 }
             }
-            else if (FirstCard.charAt(0) == 'Y'){
-                switch(FirstCard.charAt(1)){
+            else if (BotHand.get(i).charAt(0) == 'Y'){
+                switch(BotHand.get(i).charAt(1)){
                     case '1':
                         return ListOfCards[90];
                     case '2':
@@ -253,9 +255,9 @@ public class CheckCard {
                         return ListOfCards[101];
                 }
             }
-            else if (FirstCard.charAt(0) == 'W'){
+            else if (BotHand.get(i).charAt(0) == 'W'){
                 
-                switch(FirstCard.charAt(1)){
+                switch(BotHand.get(i).charAt(1)){
                     case '(':
                         return ListOfCards[102]; 
                     case 'P':
@@ -263,25 +265,30 @@ public class CheckCard {
                 }
             }
         }
-        else if (FirstCard.contains("(3)")) {
-            switch(FirstCard.charAt(1)){
-                    case '(':
-                        return ListOfCards[103]; 
-                    case 'P':
-                        return ListOfCards[106];   
-                }
+        else if (BotHand.get(i).contains("(3)")) {
+            switch(BotHand.get(i).charAt(1)){
+                case '(':
+                    return ListOfCards[103]; 
+                case 'P':
+                    return ListOfCards[106];   
+            }
         }
-        else if (FirstCard.contains("(4)")) {
-            switch(FirstCard.charAt(1)){
-                    case '(':
-                        return ListOfCards[104]; 
-                    case 'P':
-                        return ListOfCards[107];   
-                }
+        else if (BotHand.get(i).contains("(4)")) {
+            switch(BotHand.get(i).charAt(1)){
+                case '(':
+                    return ListOfCards[104]; 
+                case 'P':
+                    return ListOfCards[107];   
+            }
         }
-        return null;
-    }
-}
         
         
 
+
+
+
+        return null;
+        
+        
+    }
+}
