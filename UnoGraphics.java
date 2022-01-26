@@ -822,64 +822,61 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     }
                     BotPlays();
                 }
-                else if(BotHand.get(i).charAt(0) == 'W'){
-                    //play that card as a wild or +4
-                    System.out.println("Bot played: " + BotHand.get(i));
-                    Draw = DrawCard.nextInt(4);
-                    if(Draw == 0){
-                        First = RED_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                    }
-                    if(Draw == 1){
-                        First = BLUE_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                    }
-                    if(Draw == 2){
-                        First = GREEN_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                    }
-                    if(Draw == 3){
-                        First = YELLOW_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                    }
-                    BotWildColor = Draw--;
-                    FirstCard = ColorCards.get(BotWildColor);
-                    System.out.println("Wild");
-                    System.out.println(FirstCard);
-                    String DrawnCard;
-                    if (BotHand.get(i).contains("WP4")){
-                        System.out.println("you draws four and the bot plays again");
-                        BotHand.remove(BotHand.get(i));
-                        for(int ForLoop = 0; ForLoop < 4; ForLoop++){
-                            DeckLength = Deck.toArray().length;
-                            Draw = DrawCard.nextInt(DeckLength);
-                            DrawnCard = Deck.get(Draw);
-                            PlayerHand.add(DrawnCard);
-                            Deck.remove(DrawnCard);
-                        }
-                    }
-                    PlayerPlay();
-                }
                 BotHand.remove(BotHand.get(i));
                 if(BotHand.toArray().length == 0){
                     WinOrLose W = new WinOrLose("you lose");
                 }
                 PlayerPlay();
             }
-            
+            else if(BotHand.get(i).contains("W")){
+                //play that card as a wild or +4
+                System.out.println("Bot played: " + BotHand.get(i));
+                Draw = DrawCard.nextInt(4);
+                if(Draw == 0){
+                    First = RED_WILD;
+                    First.setVisible(true);
+                    First.setBounds(215, 200, 67, 111);
+                }
+                if(Draw == 1){
+                    First = BLUE_WILD;
+                    First.setVisible(true);
+                    First.setBounds(215, 200, 67, 111);
+                }
+                if(Draw == 2){
+                    First = GREEN_WILD;
+                    First.setVisible(true);
+                    First.setBounds(215, 200, 67, 111);
+                }
+                if(Draw == 3){
+                    First = YELLOW_WILD;
+                    First.setVisible(true);
+                    First.setBounds(215, 200, 67, 111);
+                }
+                FirstCard = ColorCards.get(Draw);
+                System.out.println("Wild");
+                System.out.println(FirstCard);
+                String DrawnCard;
+                if (BotHand.get(i).contains("WP4")){
+                    System.out.println("you draws four and the bot plays again");
+                    BotHand.remove(BotHand.get(i));
+                    for(int ForLoop = 0; ForLoop < 4; ForLoop++){
+                        DeckLength = Deck.toArray().length;
+                        Draw = DrawCard.nextInt(DeckLength);
+                        DrawnCard = Deck.get(Draw);
+                        PlayerHand.add(DrawnCard);
+                        CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
+                        CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
+                        CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+                        Deck.remove(DrawnCard);
+                        DeckLength = Deck.toArray().length;
+                        PlayerHandLength = PlayerHand.toArray().length;
+                        x = x + 50;
+                    }
+                }
+                PlayerPlay();
+            }
         }
-        if(i == ListOfCardsLength){
-            BotDrawCard();
-        }
-        if(i < ListOfCardsLength){
-            //check for the card 
-            BotDrawCard();
-        }   
-
+        BotDrawCard();  
     }
 
     public static void BotDrawCard(){
@@ -1044,16 +1041,5 @@ public class UnoGraphics extends JFrame implements ActionListener{
 
         }
     }
-
-
-    // public static JButton CreateCard(){
-
-    //     Random r = new Random();
-    //     int RandCard = r.nextInt(ListOfCardsLength);
-
-    //     return ListOfCards[RandCard];
-    // }
-
-
 }
 
