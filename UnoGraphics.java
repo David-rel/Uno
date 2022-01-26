@@ -3,6 +3,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument.LeafElement;
 
@@ -15,6 +16,8 @@ import java.util.Scanner;
 public class UnoGraphics extends JFrame implements ActionListener{
    
     static JLayeredPane MainGamePanel = new JLayeredPane();
+
+    static String ChooseColor = "";
 
     ImageIcon BackgroundImage = new ImageIcon("pics/BackGround.png");
     ImageIcon Uno = new ImageIcon("pics/Uno.png");
@@ -1035,30 +1038,44 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     //check stuff here
                     String DrawnCard;
                     PlayerHandLength = PlayerHand.toArray().length;
-                    ColorChooser.setVisible(true);
-                    if(ColorChoice().equals("red")){
-                        First = RED_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                        MainGamePanel.add(First, Integer.valueOf(ValueOf));
-                    }
-                    else if(ColorChoice().equals("blue")){
-                        First = BLUE_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                        MainGamePanel.add(First, Integer.valueOf(ValueOf));
-                    }
-                    else if(ColorChoice().equals("green")){
-                        First = GREEN_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                        MainGamePanel.add(First, Integer.valueOf(ValueOf));
-                    }
-                    else if(ColorChoice().equals("yellow")){
-                        First = YELLOW_WILD;
-                        First.setVisible(true);
-                        First.setBounds(215, 200, 67, 111);
-                        MainGamePanel.add(First, Integer.valueOf(ValueOf));
+
+                    while(true){
+                        ChooseColor = JOptionPane.showInputDialog("What Color Do You Want");
+                        if(ChooseColor.equalsIgnoreCase("red")){
+                            First = RED_WILD;
+                            First.setVisible(true);
+                            First.setBounds(215, 200, 67, 111);
+                            MainGamePanel.add(First, Integer.valueOf(ValueOf));
+                            FirstCard = "Red";
+                            break;
+                        }
+                        if(ChooseColor.equalsIgnoreCase("blue")){
+                            First = BLUE_WILD;
+                            First.setVisible(true);
+                            First.setBounds(215, 200, 67, 111);
+                            MainGamePanel.add(First, Integer.valueOf(ValueOf));
+                            FirstCard = "Blue";
+                            break;
+                        }
+                        if(ChooseColor.equalsIgnoreCase("green")){
+                            First = GREEN_WILD;
+                            First.setVisible(true);
+                            First.setBounds(215, 200, 67, 111);
+                            MainGamePanel.add(First, Integer.valueOf(ValueOf));
+                            FirstCard = "Green";
+                            break;
+                        }
+                        if(ChooseColor.equalsIgnoreCase("yellow")){
+                            First = YELLOW_WILD;
+                            First.setVisible(true);
+                            First.setBounds(215, 200, 67, 111);
+                            MainGamePanel.add(First, Integer.valueOf(ValueOf));
+                            FirstCard = "Yellow";
+                            break;
+                        }
+                        else{
+                            continue;
+                        }
                     }
 
                     System.out.println("Wild");
@@ -1085,16 +1102,6 @@ public class UnoGraphics extends JFrame implements ActionListener{
                 }
             }
         }
-    }
-    
-
-    public static String ColorChoice(){        
-        do{
-            ColorChoice();
-        }while(ColorChooser.getText() != "red" || ColorChooser.getText() != "blue" || ColorChooser.getText() != "green" || ColorChooser.getText() != "yellow");
-
-        return ColorChoice2;
-
     }
 }
 
