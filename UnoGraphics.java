@@ -3,6 +3,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.text.AbstractDocument.LeafElement;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -55,15 +57,15 @@ public class UnoGraphics extends JFrame implements ActionListener{
     static JButton UNO_CARD = new JButton();
     static JButton First = new JButton();
 
-    // static ImageIcon red_wild = new ImageIcon("pics/RedWild.png");
-    // static ImageIcon blue_wild = new ImageIcon("pics/BlueWild.png");
-    // static ImageIcon yellow_wild = new ImageIcon("pics/YellowWild.png");
-    // static ImageIcon green_wild = new ImageIcon("pics/GreenWild.png");
+    static ImageIcon red_wild = new ImageIcon("pics/RedWild.png");
+    static ImageIcon blue_wild = new ImageIcon("pics/BlueWild.png");
+    static ImageIcon yellow_wild = new ImageIcon("pics/YellowWild.png");
+    static ImageIcon green_wild = new ImageIcon("pics/GreenWild.png");
 
-    // static JButton RED_WILD = new JButton();
-    // static JButton BLUE_WILD = new JButton();
-    // static JButton GREEN_WILD = new JButton();
-    // static JButton YELLOW_WILD = new JButton();
+    static JButton RED_WILD = new JButton();
+    static JButton BLUE_WILD = new JButton();
+    static JButton GREEN_WILD = new JButton();
+    static JButton YELLOW_WILD = new JButton();
 
     static final int GAME_WIDTH=910;
     static final int GAME_HEIGHT= 525;
@@ -73,6 +75,23 @@ public class UnoGraphics extends JFrame implements ActionListener{
     static int DeckLength;
 
     static int index;
+
+    static int pos1 = 50; 
+    static int pos2 = 100; 
+    static int pos3 = 150; 
+    static int pos4 = 200; 
+    static int pos5 = 250; 
+    static int pos6 = 300; 
+    static int pos7 = 350; 
+    static int pos8 = 400; 
+    static int pos9 = 450; 
+    static int pos10 = 500; 
+    static int pos11 = 550; 
+    static int pos12 = 600; 
+    static int pos13 = 650; 
+    static int pos14 = 700; 
+    static int pos15 = 750; 
+    static int pos16 = 800; 
 
     static String DrawnCard = "";
 
@@ -95,6 +114,15 @@ public class UnoGraphics extends JFrame implements ActionListener{
         BACKGROUND_PANEL.setSize(SCREEN_SIZE);
         BACKGROUND_PANEL.setLocation(-10,0);
         BACKGROUND_PANEL.setIcon(BackgroundImage);
+
+        RED_WILD.setIcon(red_wild);
+        RED_WILD.setVisible(false);
+        BLUE_WILD.setIcon(blue_wild);
+        BLUE_WILD.setVisible(false);
+        GREEN_WILD.setIcon(green_wild);
+        BLUE_WILD.setVisible(false);
+        YELLOW_WILD.setIcon(yellow_wild);
+        YELLOW_WILD.setVisible(false);
 
 
         UNO_CARD.setOpaque(true);
@@ -658,6 +686,10 @@ public class UnoGraphics extends JFrame implements ActionListener{
         MainGamePanel.add(ListOfCards[105], Integer.valueOf(ValueOf));
         MainGamePanel.add(ListOfCards[106], Integer.valueOf(ValueOf));
         MainGamePanel.add(ListOfCards[107], Integer.valueOf(ValueOf));
+        MainGamePanel.add(RED_WILD, Integer.valueOf(ValueOf));
+        MainGamePanel.add(BLUE_WILD, Integer.valueOf(ValueOf));
+        MainGamePanel.add(GREEN_WILD, Integer.valueOf(ValueOf));
+        MainGamePanel.add(YELLOW_WILD, Integer.valueOf(ValueOf));
         MainGamePanel.add(BACKGROUND_PANEL,Integer.valueOf(0));
         MainGamePanel.add(UNO_CARD,Integer.valueOf(1));
         MainGamePanel.add(EXIT_BTN,Integer.valueOf(1));
@@ -740,8 +772,9 @@ public class UnoGraphics extends JFrame implements ActionListener{
 
         int BotWildColor;
         int Draw;
+        int i;
 
-        for(int i = 0; i < BotHand.toArray().length; i++){ 
+        for(i = 0; i < BotHand.toArray().length; i++){ 
 
             if(BotHand.get(i).charAt(0) != 'W' && BotHand.get(i).charAt(0) == FirstCard.charAt(0) || BotHand.get(i).charAt(1) == FirstCard.charAt(1)){
                 //Play that card by color
@@ -789,15 +822,67 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     }
                     BotPlays();
                 }
+                else if(BotHand.get(i).charAt(0) == 'W'){
+                    //play that card as a wild or +4
+                    System.out.println("Bot played: " + BotHand.get(i));
+                    Draw = DrawCard.nextInt(4);
+                    if(Draw == 0){
+                        First = RED_WILD;
+                        First.setVisible(true);
+                        First.setBounds(215, 200, 67, 111);
+                    }
+                    if(Draw == 1){
+                        First = BLUE_WILD;
+                        First.setVisible(true);
+                        First.setBounds(215, 200, 67, 111);
+                    }
+                    if(Draw == 2){
+                        First = GREEN_WILD;
+                        First.setVisible(true);
+                        First.setBounds(215, 200, 67, 111);
+                    }
+                    if(Draw == 3){
+                        First = YELLOW_WILD;
+                        First.setVisible(true);
+                        First.setBounds(215, 200, 67, 111);
+                    }
+                    BotWildColor = Draw--;
+                    FirstCard = ColorCards.get(BotWildColor);
+                    System.out.println("Wild");
+                    System.out.println(FirstCard);
+                    String DrawnCard;
+                    if (BotHand.get(i).contains("WP4")){
+                        System.out.println("you draws four and the bot plays again");
+                        BotHand.remove(BotHand.get(i));
+                        for(int ForLoop = 0; ForLoop < 4; ForLoop++){
+                            DeckLength = Deck.toArray().length;
+                            Draw = DrawCard.nextInt(DeckLength);
+                            DrawnCard = Deck.get(Draw);
+                            PlayerHand.add(DrawnCard);
+                            Deck.remove(DrawnCard);
+                        }
+                    }
+                    PlayerPlay();
+                }
                 BotHand.remove(BotHand.get(i));
                 if(BotHand.toArray().length == 0){
                     WinOrLose W = new WinOrLose("you lose");
                 }
                 PlayerPlay();
             }
-                
+            
         }
-    
+        if(i == ListOfCardsLength){
+            BotDrawCard();
+        }
+        if(i < ListOfCardsLength){
+            //check for the card 
+            BotDrawCard();
+        }   
+
+    }
+
+    public static void BotDrawCard(){
         DeckLength = Deck.toArray().length;
         System.out.println(DeckLength);
         
@@ -816,8 +901,6 @@ public class UnoGraphics extends JFrame implements ActionListener{
         System.out.println(BotHand);
         PlayerPlay();
     }
-
-
         
     
     
@@ -844,6 +927,8 @@ public class UnoGraphics extends JFrame implements ActionListener{
             //     x = 150;
             //     y = 425;
             //     CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
+            //x = 50;
+            //static int y = 350;
             // }
             CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
             Deck.remove(DrawnCard);
@@ -871,17 +956,25 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     System.out.println("You have played a " + PlayerHand.get(i));
 
                     PlayerHandLength = PlayerHand.toArray().length;
+                    
+                    // if(PlayerHand.get(i).contains("1") || PlayerHand.get(i).contains("2") || PlayerHand.get(i).contains("3") || PlayerHand.get(i).contains("4") || PlayerHand.get(i).contains("5") || PlayerHand.get(i).contains("6") || PlayerHand.get(i).contains("7") || PlayerHand.get(i).contains("8") || PlayerHand.get(i).contains("9") || PlayerHand.get(i).contains("0")){
+
+                    //     BotPlays();
+                    //     break;
+
+                    // }
 
                     //checks for skip reverse and draw2 2 --------------------------------------------------------------
-                    if(PlayerHand.get(i).contains("S") || PlayerHand.get(i).charAt(1) == 'R'){
+                    if(FirstCard.contains("S") || FirstCard.charAt(1) == 'R'){
                         System.out.println("you get to play again");
                         PlayerHand.remove(FirstCard);
                         if(PlayerHand.toArray().length == 0){
                             WinOrLose W = new WinOrLose("you win");
                         }
                         PlayerPlay();
+                        break;
                     }
-                    else if(PlayerHand.get(i).contains("D")){
+                    else if(FirstCard.contains("D")){
                         System.out.println("the bot draws two and you get to play again");
                         String DrawnCard;
                         PlayerHand.remove(FirstCard);
@@ -898,17 +991,8 @@ public class UnoGraphics extends JFrame implements ActionListener{
                             WinOrLose W = new WinOrLose("you win");
                         }
                         PlayerPlay();
+                        break;
                     }
-                    if(PlayerHand.toArray().length == 0){
-                        WinOrLose W = new WinOrLose("you win");
-                    }
-                    PlayerHand.remove(FirstCard);
-                    
-                    }
-
-
-
-
                     else if(PlayerHand.get(i).contains("W")){
                         //play that card as a wild or +4
                         FirstCard = PlayerHand.get(i);
@@ -921,7 +1005,7 @@ public class UnoGraphics extends JFrame implements ActionListener{
                         PlayerHandLength = PlayerHand.toArray().length;
                         System.out.println("What color do you want");
                         ColorChoice = S.next();
-                        if (ColorChoice.equalsIgnoreCase("red") || ColorChoice.equalsIgnoreCase("Blue") || ColorChoice.equalsIgnoreCase("Green") || ColorChoice.equalsIgnoreCase("Yellow")) {
+                        if (ColorChoice.equalsIgnoreCase("Red") || ColorChoice.equalsIgnoreCase("Blue") || ColorChoice.equalsIgnoreCase("Green") || ColorChoice.equalsIgnoreCase("Yellow")) {
                             FirstCard = ColorChoice.toUpperCase();
                         }
 
@@ -942,15 +1026,20 @@ public class UnoGraphics extends JFrame implements ActionListener{
                                 BotHand.add(DrawnCard);
                                 Deck.remove(DrawnCard);
                             }
-                        BotPlays();
                         }
                         else {
                             PlayerHand.remove(PlayerHand.get(i));
                         }
                     }
-                    else {
-                        System.out.println("You Cannot Play that Card");
+                    if(PlayerHand.toArray().length == 0){
+                        WinOrLose W = new WinOrLose("you win");
                     }
+                    PlayerHand.remove(FirstCard);
+                    BotPlays();
+                }    
+                else {
+                    System.out.println("You Cannot Play that Card");
+                }
             }
 
         }
@@ -968,11 +1057,3 @@ public class UnoGraphics extends JFrame implements ActionListener{
 
 }
 
-//add draw card
-//fix errors
-//wilds
-    //text into panel
-//fix errors
-//winning panel thingy
-//losing panel thingy
-//cleaning up the drawing of cards

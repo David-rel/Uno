@@ -48,7 +48,7 @@ public class CreateCardIcons {
     static ImageIcon RED_5_2 = new ImageIcon("pics/Red5.png");
     static ImageIcon RED_6_2 = new ImageIcon("pics/Red6.png");
     static ImageIcon RED_7_2 = new ImageIcon("pics/Red7.png");
-    static ImageIcon RED_8_2 = new ImageIcon("pics/RE8.png");
+    static ImageIcon RED_8_2 = new ImageIcon("pics/Red8.png");
     static ImageIcon RED_9_2 = new ImageIcon("pics/Red9.png");
     static ImageIcon RED_SKIP_2 = new ImageIcon("pics/RedSkip.png");
     static ImageIcon RED_REVERSE_2 = new ImageIcon("pics/RedReverse.png");
