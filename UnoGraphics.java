@@ -10,8 +10,10 @@ import javax.swing.text.AbstractDocument.LeafElement;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
 public class UnoGraphics extends JFrame implements ActionListener{
    
@@ -42,6 +44,7 @@ public class UnoGraphics extends JFrame implements ActionListener{
     static ArrayList<Integer> PlayerHandIndex = new ArrayList<>();
     static ArrayList<String> BotHand = new ArrayList<>();
     static ArrayList<String> ColorCards = new ArrayList<>();
+    static ArrayList<Integer> PlayerCardPos = new ArrayList<>();
 
     static int Cards1Length = Cards1.length;
 
@@ -107,6 +110,7 @@ public class UnoGraphics extends JFrame implements ActionListener{
     static int x = 50;
     static int y = 350;
     static String ColorChoice2 = "";
+    
 
     public void Graphics(){
         this.setPreferredSize(SCREEN_SIZE);
@@ -713,6 +717,8 @@ public class UnoGraphics extends JFrame implements ActionListener{
         MainGamePanel.add(ColorChooser,Integer.valueOf(1));
         this.add(MainGamePanel);
 
+        
+
             while(true){
 
                 for (int i = 0; i < Cards1Length; i++) {
@@ -735,10 +741,11 @@ public class UnoGraphics extends JFrame implements ActionListener{
                     Draw = DrawCard.nextInt(DeckLength);
                     DrawnCard = Deck.get(Draw);
                     PlayerHand.add(DrawnCard);
-                    PlayerHandIndex.add(index);
                     CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
                     CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
                     CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+                    PlayerCardPos.add(x);
+                    PlayerCardPos.add(y);
                     Deck.remove(DrawnCard);
                     DeckLength = Deck.toArray().length;
                     PlayerHandLength = PlayerHand.toArray().length;
@@ -839,9 +846,14 @@ public class UnoGraphics extends JFrame implements ActionListener{
                         Draw = DrawCard.nextInt(DeckLength);
                         DrawnCard = Deck.get(Draw);
                         PlayerHand.add(DrawnCard);
+                        //////////////////////////////////////////////////////////////////////////////////////
+
+                        //////////////////////////////////////////////////////////////////////////////////////
                         CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
                         CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
                         CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+                        PlayerCardPos.add(x);
+                        PlayerCardPos.add(y);
                         Deck.remove(DrawnCard);
                         DeckLength = Deck.toArray().length;
                         PlayerHandLength = PlayerHand.toArray().length;
@@ -904,6 +916,8 @@ public class UnoGraphics extends JFrame implements ActionListener{
                         CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setVisible(true);
                         CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).setBounds(x, y, 67, 111);
                         CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+                        PlayerCardPos.add(x);
+                        PlayerCardPos.add(y);
                         Deck.remove(DrawnCard);
                         DeckLength = Deck.toArray().length;
                         PlayerHandLength = PlayerHand.toArray().length;
@@ -972,6 +986,8 @@ public class UnoGraphics extends JFrame implements ActionListener{
             //static int y = 350;
             // }
             CheckCard.Check(DrawnCard, ListOfCards, PlayerHand, PlayerHandIndex).addActionListener(this);
+            PlayerCardPos.add(x);
+            PlayerCardPos.add(y);
             Deck.remove(DrawnCard);
             DeckLength = Deck.toArray().length;
             PlayerHandLength = PlayerHand.toArray().length;
@@ -1112,4 +1128,5 @@ public class UnoGraphics extends JFrame implements ActionListener{
         }
     }
 }
+
 

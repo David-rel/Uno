@@ -1,13 +1,10 @@
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+
 
 
 public class WinOrLose extends JFrame implements ActionListener{

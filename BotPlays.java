@@ -44,14 +44,13 @@ public class BotPlays {
         System.out.println(DeckLength);
         int Draw;
         Random DrawCard = new Random();
-        int BotHandLength = BotHand.toArray().length;
 
         Draw = DrawCard.nextInt(DeckLength);
         String DrawnCard = Deck.get(Draw);
         BotHand.add(DrawnCard);
         Deck.remove(DrawnCard);
         DeckLength = Deck.toArray().length;
-        BotHandLength = BotHand.toArray().length;
+        // int BotHandLength = BotHand.toArray().length;
 
         System.out.println("bot did not have the card");
         System.out.println("The bot drew a " + DrawnCard);

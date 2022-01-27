@@ -47,7 +47,7 @@ public class Main {
         PlayerHandLength = PlayerHand.toArray().length;
         BotHandLength = BotHand.toArray().length;
         DeckLength = Deck.toArray().length;
-        String Action;
+        // String Action;
         String DrawnCard;
     
         for (int i = 0; i < 7; i++) {
@@ -115,7 +115,7 @@ public class Main {
             else if (Action.equalsIgnoreCase("Play a Card")){
                 int PlayChoice;
                 String ColorChoice;
-                int PlayChoice2;
+                // int PlayChoice2;
                 
                 System.out.println(ANSI_YELLOW + PlayerHand + ANSI_RESET);
                 System.out.println("Which card do you want to play: 1-" + PlayerHandLength);
