@@ -57,6 +57,11 @@ public class WinOrLose extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == EXIT_BTN){
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
             System.exit(0);
         }
     }
